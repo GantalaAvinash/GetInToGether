@@ -1,42 +1,19 @@
 'use client';
 
-import { useUser, useAuth, SignIn } from '@clerk/nextjs';
-import { useEffect } from 'react';
+import { SignIn } from '@clerk/nextjs';
+import Link from 'next/link';
 
 const SignInPage = () => {
-  const { isSignedIn } = useAuth();
-  const { user } = useUser();
-
-  useEffect(() => {
-    console.log('isSignedIn:', isSignedIn);
-    console.log('user:', user);
-
-    const saveUserData = async () => {
-      if (isSignedIn && user) {
-        const response = await fetch('/api/saveUser', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            userId: user.id,
-            emailAddress: user.primaryEmailAddress?.emailAddress || '',
-            firstName: user.firstName,
-            lastName: user.lastName,
-          }),
-        });
-
-        const data = await response.json();
-        console.log('Save User Response:', data);
-      }
-    };
-
-    saveUserData();
-  }, [isSignedIn, user]);
 
   return (
-    <main className="auth-page">
+    <main className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
       <SignIn />
+      <div className="text-sm mt-2 flex">
+        <p>Forgot Password?</p>
+        <Link href="/forget-password" className="text-blue-400 ml-2">
+          Reset here
+        </Link>
+      </div>
     </main>
   );
 };

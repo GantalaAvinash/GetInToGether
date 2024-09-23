@@ -1,5 +1,5 @@
 import { withAuth } from '@clerk/nextjs/api';
-import dbConnect from '../../lib/mongodb';
+import dbConnect from '../../lib/db';
 import User from '../../models/User';
 
 const handler = withAuth(async (req, res) => {
