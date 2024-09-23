@@ -12,7 +12,7 @@ export async function GET() {
   return NextResponse.json(
     {
       message: "Authenticated",
-      data: { userId: userId, username: user?.username },
+      data: { userId: userId, username: user?.emailAddresses },
     },
     { status: 200 }
   );
