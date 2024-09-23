@@ -5,6 +5,7 @@ import { NextResponse } from "next/server";
 import { Webhook } from "svix";
 
 import { createUser } from "@/lib/actions/user.action";
+import { json } from "stream/consumers";
 
 export async function POST(req: Request) {
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
@@ -40,7 +41,12 @@ export async function POST(req: Request) {
 
   const { id } = evt.data;
   const eventType = evt.type;
-  console.log(`Webhook received: ID ${id}, Type ${eventType}`);
+  console.log(`Webhook received: ID ${id}, Data: ${JSON.stringify(evt.data)}`);
+
+  const userData = JSON.stringify(evt.data);
+  console.log(`User data: ${userData}`);
+
+  
 
   if (eventType === "user.created") {
     const { id, email_addresses, image_url, first_name, last_name, username } = evt.data;
