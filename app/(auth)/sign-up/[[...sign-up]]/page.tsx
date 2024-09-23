@@ -3,7 +3,9 @@ import { SignUp } from "@clerk/nextjs";
 const SignUpPage = () => {
     return (
         <main className="auth-page">
-        <SignUp />
+            <div className="flex items-center justify-center h-full">
+                <SignUp afterSignOutUrl="/" />
+            </div>
         </main>
     );
 };
