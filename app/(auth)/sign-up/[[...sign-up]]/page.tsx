@@ -4,7 +4,7 @@ const SignUpPage = () => {
     return (
         <main className="auth-page">
             <div className="flex items-center justify-center h-full">
-                <SignUp afterSignOutUrl="/" />
+                <SignUp afterSignOutUrl="/client" />
             </div>
         </main>
     );
